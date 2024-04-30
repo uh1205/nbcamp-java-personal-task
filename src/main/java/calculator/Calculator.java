@@ -33,4 +33,10 @@ public class Calculator {
     public void removeResult() {
         results.remove(0);
     }
+
+    public void inquiryResults() {
+        for (Double result : results) {
+            System.out.println(result);
+        }
+    }
 }
