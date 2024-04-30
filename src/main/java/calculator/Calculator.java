@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Calculator {
 
-    List<Double> results = new ArrayList<>();
+    private final List<Double> results = new ArrayList<>();
 
     public double calculate(int firstNum, int secondNum, char operator) {
         return switch (operator) {
@@ -20,5 +20,17 @@ public class Calculator {
             }
             default -> throw new IllegalArgumentException("Invalid operator: " + operator);
         };
+    }
+
+    public List<Double> getResults() {
+        return results;
+    }
+
+    public void addResult(double result) {
+        results.add(result);
+    }
+
+    public void removeResult(int index) {
+        results.remove(index);
     }
 }
