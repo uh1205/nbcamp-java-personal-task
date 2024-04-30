@@ -30,7 +30,7 @@ public class Calculator {
         results.add(result);
     }
 
-    public void removeResult(int index) {
-        results.remove(index);
+    public void removeResult() {
+        results.remove(0);
     }
 }

@@ -6,7 +6,6 @@ public class App {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
         Calculator calc = new Calculator();
 
         do {
@@ -21,16 +20,16 @@ public class App {
 
             double result = calc.calculate(firstNumber, secondNumber, operator);
             System.out.println("결과 : " + result); // 연산 결과 출력
-            calc.results.add(result); // 연산 결과 저장
+            calc.addResult(result); // 연산 결과 저장
 
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             if (Objects.equals(sc.nextLine(), "remove")) {
-                calc.results.remove(0);
+                calc.removeResult();
             }
 
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             if (Objects.equals(sc.nextLine(), "inquiry")) {
-                for (Double r : calc.results) {
+                for (Double r : calc.getResults()) {
                     System.out.println(r);
                 }
             }
