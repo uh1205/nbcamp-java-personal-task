@@ -15,5 +15,29 @@ public class App {
 
         System.out.print("사칙연산 기호를 입력하세요: ");
         char operator = sc.nextLine().charAt(0);
+
+        double result;
+
+        if (operator == '+') {
+            result = firstNumber + secondNumber;
+        }
+        else if (operator == '-') {
+            result = firstNumber - secondNumber;
+        }
+        else if (operator == '*') {
+            result = firstNumber * secondNumber;
+        }
+        else if (operator == '/') {
+            if (secondNumber == 0) {
+                System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                return;
+            }
+            result = (double) firstNumber / secondNumber;
+        } else {
+            System.out.println("사칙연산 기호에 맞는 연산자를 사용해주세요.");
+            return;
+        }
+
+        System.out.println("결과 : " + result);
     }
 }
