@@ -7,7 +7,7 @@ public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        List<Double> results = new ArrayList<>();
+        Calculator calc = new Calculator();
 
         do {
             System.out.print("첫 번째 숫자를 입력하세요: ");
@@ -19,36 +19,18 @@ public class App {
             System.out.print("사칙연산 기호를 입력하세요: ");
             char operator = sc.nextLine().charAt(0);
 
-            double result;
-
-            if (operator == '+') {
-                result = firstNumber + secondNumber;
-            } else if (operator == '-') {
-                result = firstNumber - secondNumber;
-            } else if (operator == '*') {
-                result = firstNumber * secondNumber;
-            } else if (operator == '/') {
-                if (secondNumber == 0) {
-                    System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
-                    return;
-                }
-                result = (double) firstNumber / secondNumber;
-            } else {
-                System.out.println("사칙연산 기호에 맞는 연산자를 사용해주세요.");
-                return;
-            }
-
+            double result = calc.calculate(firstNumber, secondNumber, operator);
             System.out.println("결과 : " + result); // 연산 결과 출력
-            results.add(result);
+            calc.results.add(result); // 연산 결과 저장
 
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             if (Objects.equals(sc.nextLine(), "remove")) {
-                results.remove(0);
+                calc.results.remove(0);
             }
 
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             if (Objects.equals(sc.nextLine(), "inquiry")) {
-                for (Double r : results) {
+                for (Double r : calc.results) {
                     System.out.println(r);
                 }
             }
