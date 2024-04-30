@@ -1,16 +1,13 @@
 package calculator;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        double[] results = new double[10]; // 연산 결과 10개를 저장할 수 있는 배열
-        int index = 0; // 연산의 결과가 저장된 배열의 마지막 인덱스를 저장하는 변수
+        List<Double> results = new ArrayList<>();
 
         do {
             System.out.print("첫 번째 숫자를 입력하세요: ");
@@ -42,14 +39,11 @@ public class App {
             }
 
             System.out.println("결과 : " + result); // 연산 결과 출력
+            results.add(result);
 
-            if (index > 9) {    // 연산 결과가 10개를 초과하는 경우 (index = 10)
-                for (int i = 0; i < 9; i++) {
-                    results[i] = results[i + 1]; // 배열을 왼쪽으로 시프트하고,
-                }
-                results[index-- - 1] = result; // 새로운 연산 결과 값을 배열의 마지막 인덱스에 저장
-            } else {
-                results[index++] = result; // 연산 결과를 배열에 넣고, index 값을 1 늘린다.
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            if (Objects.equals(sc.nextLine(), "remove")) {
+                results.remove(0);
             }
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
