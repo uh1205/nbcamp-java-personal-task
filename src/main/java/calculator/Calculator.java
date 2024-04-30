@@ -1,11 +1,14 @@
 package calculator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
 
-    private final List<Double> results = new ArrayList<>();
+    private final List<Double> results;
+
+    public Calculator(List<Double> results) {
+        this.results = results;
+    }
 
     public double calculate(int firstNum, int secondNum, char operator) {
         return switch (operator) {
