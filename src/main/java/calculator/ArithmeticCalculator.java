@@ -4,46 +4,30 @@ import java.util.List;
 
 public class ArithmeticCalculator extends Calculator {
 
-    private final List<Double> results;
+    private final AddOperator addOperator;
+    private final SubtractOperator subtractOperator;
+    private final MultiplyOperator multiplyOperator;
+    private final DivideOperator divideOperator;
 
-    public ArithmeticCalculator(List<Double> results) {
-        this.results = results;
+    public ArithmeticCalculator(AddOperator addOperator, SubtractOperator subtractOperator, MultiplyOperator multiplyOperator, DivideOperator divideOperator) {
+        this.addOperator = addOperator;
+        this.subtractOperator = subtractOperator;
+        this.multiplyOperator = multiplyOperator;
+        this.divideOperator = divideOperator;
     }
 
-    public double calculate(double firstNum, double secondNum, char operator) {
+    @Override
+    public double calculate(String... strings) {
+        String firstNum = strings[0];
+        String secondNum = strings[1];
+        String operator = strings[2];
+
         return switch (operator) {
-            case '+' -> firstNum + secondNum;
-            case '-' -> firstNum - secondNum;
-            case '*' -> firstNum * secondNum;
-            case '/' -> {
-                if (secondNum == 0) {
-                    throw new ArithmeticException("Division by zero");
-                }
-                yield (double) firstNum / secondNum;
-            }
+            case "+" -> addOperator.operate(firstNum, secondNum);
+            case "-" -> subtractOperator.operate(firstNum, secondNum);
+            case "*" -> multiplyOperator.operate(firstNum, secondNum);
+            case "/" -> divideOperator.operate(firstNum, secondNum);
             default -> throw new IllegalArgumentException("Invalid operator: " + operator);
         };
-    }
-
-    @Override
-    List<Double> getResult() {
-        return results;
-    }
-
-    @Override
-    void addResult(double result) {
-        results.add(result);
-    }
-
-    @Override
-    void removeResult() {
-        results.remove(0);
-    }
-
-    @Override
-    void inquiryResults() {
-        for (Double result : results) {
-            System.out.println(result);
-        }
     }
 }

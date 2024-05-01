@@ -1,14 +1,29 @@
 package calculator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Calculator {
 
-    abstract List<Double> getResult();
+    private final List<Double> results = new ArrayList<>();
 
-    abstract void addResult(double result);
+    public abstract double calculate(String... strings);
 
-    abstract void removeResult();
+    public List<Double> getResult() {
+        return results;
+    }
 
-    abstract void inquiryResults();
+    public void addResult(double result) {
+        results.add(result);
+    }
+
+    public void removeResult() {
+        results.remove(0);
+    }
+
+    public void inquiryResults() {
+        for (Double result : results) {
+            System.out.println(result);
+        }
+    }
 }
