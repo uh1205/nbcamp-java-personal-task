@@ -3,27 +3,17 @@ package calculator;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Calculator {
+public interface Calculator {
 
-    private final List<Double> results = new ArrayList<>();
+    List<Double> results = new ArrayList<>();
 
-    public abstract double calculate(String... strings);
+    double calculate(String... strings);
 
-    public List<Double> getResult() {
-        return results;
-    }
+    List<Double> getResult();
 
-    public void addResult(double result) {
-        results.add(result);
-    }
+    void addResult(double result);
 
-    public void removeResult() {
-        results.remove(0);
-    }
+    void removeResult();
 
-    public void inquiryResults() {
-        for (Double result : results) {
-            System.out.println(result);
-        }
-    }
+    void inquiryResults();
 }

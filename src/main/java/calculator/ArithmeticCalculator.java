@@ -2,18 +2,20 @@ package calculator;
 
 import java.util.List;
 
-public class ArithmeticCalculator extends Calculator {
+public class ArithmeticCalculator implements Calculator {
 
     private final AddOperator addOperator;
     private final SubtractOperator subtractOperator;
     private final MultiplyOperator multiplyOperator;
     private final DivideOperator divideOperator;
+    private final ModOperator modOperator;
 
-    public ArithmeticCalculator(AddOperator addOperator, SubtractOperator subtractOperator, MultiplyOperator multiplyOperator, DivideOperator divideOperator) {
-        this.addOperator = addOperator;
-        this.subtractOperator = subtractOperator;
-        this.multiplyOperator = multiplyOperator;
-        this.divideOperator = divideOperator;
+    public ArithmeticCalculator() {
+        addOperator = new AddOperator();
+        subtractOperator = new SubtractOperator();
+        multiplyOperator = new MultiplyOperator();
+        divideOperator = new DivideOperator();
+        modOperator = new ModOperator();
     }
 
     @Override
@@ -27,7 +29,30 @@ public class ArithmeticCalculator extends Calculator {
             case "-" -> subtractOperator.operate(firstNum, secondNum);
             case "*" -> multiplyOperator.operate(firstNum, secondNum);
             case "/" -> divideOperator.operate(firstNum, secondNum);
+            case "%" -> modOperator.operate(firstNum, secondNum);
             default -> throw new IllegalArgumentException("Invalid operator: " + operator);
         };
+    }
+
+    @Override
+    public List<Double> getResult() {
+        return results;
+    }
+
+    @Override
+    public void addResult(double result) {
+        results.add(result);
+    }
+
+    @Override
+    public void removeResult() {
+        results.remove(0);
+    }
+
+    @Override
+    public void inquiryResults() {
+        for (Double result : results) {
+            System.out.println(result);
+        }
     }
 }

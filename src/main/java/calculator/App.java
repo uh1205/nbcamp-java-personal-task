@@ -7,8 +7,8 @@ public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Calculator cal;
-        ArithmeticCalculator calA = new ArithmeticCalculator(new AddOperator(), new SubtractOperator(), new MultiplyOperator(), new DivideOperator());
-        CircleCalculator calC = new CircleCalculator();
+        Calculator calA = new ArithmeticCalculator();
+        Calculator calC = new CircleCalculator();
         double result;
 
         do {
