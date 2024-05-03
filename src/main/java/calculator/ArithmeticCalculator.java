@@ -1,8 +1,8 @@
 package calculator;
 
-import java.util.List;
+import operator.*;
 
-public class ArithmeticCalculator implements Calculator {
+public class ArithmeticCalculator extends Calculator {
 
     private final AddOperator addOperator;
     private final SubtractOperator subtractOperator;
@@ -32,27 +32,5 @@ public class ArithmeticCalculator implements Calculator {
             case "%" -> modOperator.operate(firstNum, secondNum);
             default -> throw new IllegalArgumentException("Invalid operator: " + operator);
         };
-    }
-
-    @Override
-    public List<Double> getResult() {
-        return results;
-    }
-
-    @Override
-    public void addResult(double result) {
-        results.add(result);
-    }
-
-    @Override
-    public void removeResult() {
-        results.remove(0);
-    }
-
-    @Override
-    public void inquiryResults() {
-        for (Double result : results) {
-            System.out.println(result);
-        }
     }
 }

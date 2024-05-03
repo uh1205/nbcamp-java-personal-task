@@ -1,4 +1,4 @@
-package calculator;
+package operator;
 
 public class MultiplyOperator {
 
